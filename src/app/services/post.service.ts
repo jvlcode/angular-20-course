@@ -9,6 +9,9 @@ export interface Post {
   userId: number;
 }
 
+export type PostWithEdit = Post & { editing?: boolean };
+
+
 @Injectable({
   providedIn: 'root'
 })

@@ -1,0 +1,24 @@
+<h2>Posts</h2>
+<h3>Add Post</h3>
+<form (submit)="submitPost()">
+    <input [(ngModel)]="newPost.title" placeholder="Title" name="title" />
+    <input [(ngModel)]="newPost.body" placeholder="Body" name="body" />
+    <button type="submit">Create</button>
+</form>
+
+<ul *ngIf="posts.length > 0; else loading">
+    <li *ngFor="let post of posts">
+        <div *ngIf="!post.editing">
+            <strong>{{ post.title }}</strong> - <button (click)="edit(post)">Edit</button> <button (click)="delete(post.id)">Delete</button>
+        </div>
+
+        <div *ngIf="post.editing">
+            <input [(ngModel)]="post.title" />
+            <input [(ngModel)]="post.body" />
+            <button (click)="update(post)">Update</button>
+            <button (click)="cancelEdit(post)">Cancel</button>
+        </div>
+    </li>
+
+</ul>
+<ng-template #loading>Loading posts...</ng-template>
