@@ -1,24 +1,64 @@
-<h2>Posts</h2>
-<h3>Add Post</h3>
-<form (submit)="submitPost()">
-    <input [(ngModel)]="newPost.title" placeholder="Title" name="title" />
-    <input [(ngModel)]="newPost.body" placeholder="Body" name="body" />
-    <button type="submit">Create</button>
-</form>
+<div class="container my-4">
+  <h2 class="mb-4">Posts</h2>
 
-<ul *ngIf="posts.length > 0; else loading">
-    <li *ngFor="let post of posts">
-        <div *ngIf="!post.editing">
-            <strong>{{ post.title }}</strong> - <button (click)="edit(post)">Edit</button> <button (click)="delete(post.id)">Delete</button>
+  <div class="card mb-4">
+    <div class="card-header">Add Post</div>
+    <div class="card-body">
+      <form (submit)="submitPost()" class="row g-3">
+        <div class="col-md-6">
+          <input
+            [(ngModel)]="newPost.title"
+            placeholder="Title"
+            name="title"
+            class="form-control"
+            required
+          />
         </div>
+        <div class="col-md-6">
+          <input
+            [(ngModel)]="newPost.body"
+            placeholder="Body"
+            name="body"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-        <div *ngIf="post.editing">
-            <input [(ngModel)]="post.title" />
-            <input [(ngModel)]="post.body" />
-            <button (click)="update(post)">Update</button>
-            <button (click)="cancelEdit(post)">Cancel</button>
+  <ul class="list-group" *ngIf="posts.length > 0; else loading">
+    <li class="list-group-item" *ngFor="let post of posts">
+      <div *ngIf="!post.editing" class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ post.title }}</strong>
+          <div class="text-muted small">{{ post.body }}</div>
         </div>
+        <div>
+          <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(post)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="delete(post.id)">Delete</button>
+        </div>
+      </div>
+
+      <div *ngIf="post.editing" class="row g-2">
+        <div class="col-md-5">
+          <input [(ngModel)]="post.title" class="form-control" placeholder="Title" />
+        </div>
+        <div class="col-md-5">
+          <input [(ngModel)]="post.body" class="form-control" placeholder="Body" />
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button class="btn btn-success w-100" (click)="update(post)">Update</button>
+          <button class="btn btn-secondary w-100" (click)="cancelEdit(post)">Cancel</button>
+        </div>
+      </div>
     </li>
+  </ul>
 
-</ul>
-<ng-template #loading>Loading posts...</ng-template>
+  <ng-template #loading>
+    <div class="alert alert-info">Loading posts...</div>
+  </ng-template>
+</div>
