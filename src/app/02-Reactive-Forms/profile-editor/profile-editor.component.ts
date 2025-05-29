@@ -19,6 +19,15 @@ export class ProfileEditorComponent {
     }),
   });
 
+  updateProfile() {
+    this.profileForm.patchValue({
+      firstName: 'Nancy',
+      address: {
+        street: '123 Drew Street',
+      },
+    });
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
