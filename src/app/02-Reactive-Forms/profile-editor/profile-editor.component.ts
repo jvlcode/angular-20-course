@@ -8,9 +8,15 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './profile-editor.component.css'
 })
 export class ProfileEditorComponent {
- profileForm = new FormGroup({
+  profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
+    address: new FormGroup({
+      street: new FormControl(''),
+      city: new FormControl(''),
+      state: new FormControl(''),
+      zip: new FormControl(''),
+    }),
   });
 
   onSubmit() {
