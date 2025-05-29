@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Post, PostService } from '../post.service';
+import { PostService, Post } from './post.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
