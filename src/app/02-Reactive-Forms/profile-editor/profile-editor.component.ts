@@ -12,4 +12,9 @@ export class ProfileEditorComponent {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.profileForm.value);
+  }
 }
