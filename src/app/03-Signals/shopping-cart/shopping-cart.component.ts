@@ -15,7 +15,7 @@ interface Product {
 })
 export class ShoppingCartComponent {
   cartItems = signal<Product[]>([]);
-  
+
   // Computed signal for total price
   cartTotal = computed(() =>
     this.cartItems().reduce((total, item) => total + item.price, 0)
@@ -27,12 +27,14 @@ export class ShoppingCartComponent {
   // Applying a discount (e.g., 10% discount if more than 3 items)
   discountedTotal = computed(() => {
     const total = this.cartTotal();
-    return this.cartItemCount() > 3 ? total * 0.9 : total; 
+    return this.cartItemCount() > 3 ? total * 0.9 : total;
   });
 
-  addToCart(product: Product) {
-    this.cartItems.update(items => [...items, product]);
+  addToCart(productName: string, productPrice: number) {
+    const newProduct = { id: Date.now(), name: productName, price: productPrice };
+    this.cartItems.update(items => [...items, newProduct]);
   }
+
 
   removeFromCart(productId: number) {
     this.cartItems.update(items => items.filter(item => item.id !== productId));

@@ -1,29 +1,33 @@
-<div class="container">
-  <h2>Shopping Cart</h2>
+<div class="container mt-4">
+  <h2 class="text-center">Shopping Cart</h2>
 
-  <!-- Input fields for adding a product -->
-  <input #productName type="text" placeholder="Product Name">
-  <input #productPrice type="number" placeholder="Price">
-
-  <!-- Fixed button syntax for adding a product -->
-  <button (click)="
-        addToCart({ id: +1, name: productName.value, price: +productPrice.value }); 
-        productName.value = productPrice.value = '';">
-    Add to Cart
-  </button>
+  <!-- Form for adding a product -->
+  <div class="mb-3 d-flex gap-2">
+    <input #productName type="text" class="form-control w-25" placeholder="Product Name">
+    <input #productPrice type="number" class="form-control w-25" placeholder="Price">
+    <button class="btn btn-primary"
+      (click)="addToCart(productName.value, +productPrice.value ); 
+               productName.value = productPrice.value = '';">
+      Add to Cart
+    </button>
+  </div>
 
   <!-- Display cart items -->
-  <div *ngIf="cartItems().length === 0">
+  <div *ngIf="cartItems().length === 0" class="alert alert-warning text-center">
     <p>Your cart is empty.</p>
   </div>
 
-  <div *ngFor="let item of cartItems()">
-    {{ item.name }} - ${{ item.price }}
-    <button (click)="removeFromCart(item.id)">Remove</button>
+  <div class="list-group">
+    <div *ngFor="let item of cartItems()" class="list-group-item d-flex justify-content-between align-items-center">
+      <span>{{ item.name }} - <strong>${{ item.price }}</strong></span>
+      <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.id)">Remove</button>
+    </div>
   </div>
 
-  <!-- Total calculations -->
-  <p>Total Items: {{ cartItemCount() }}</p>
-  <p>Total Price: ${{ cartTotal() }}</p>
-  <p>Discounted Price: ${{ discountedTotal() }}</p>
+  <!-- Cart summary -->
+  <div class="mt-4 p-3 border rounded bg-light">
+    <p class="fw-bold">Total Items: <span class="badge bg-secondary">{{ cartItemCount() }}</span></p>
+    <p class="fw-bold">Total Price: <span class="badge bg-success">${{ cartTotal() }}</span></p>
+    <p class="fw-bold">Discounted Price: <span class="badge bg-info">${{ discountedTotal() }}</span></p>
+  </div>
 </div>
