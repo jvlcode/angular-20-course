@@ -1,0 +1,64 @@
+<div class="container my-4">
+  <h2 class="mb-4">Posts</h2>
+
+  <div class="card mb-4">
+    <div class="card-header">Add Post</div>
+    <div class="card-body">
+      <form (submit)="submitPost()" class="row g-3">
+        <div class="col-md-6">
+          <input
+            [(ngModel)]="newPost.title"
+            placeholder="Title"
+            name="title"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-md-6">
+          <input
+            [(ngModel)]="newPost.body"
+            placeholder="Body"
+            name="body"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ul *ngIf="posts.length > 0; else loading" class="list-group">
+    <li *ngFor="let post of posts" class="list-group-item">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{post.title}}</strong>
+          <div class="text-muted small">{{post.body}}</div>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-outline-primary me-2">Edit</button>
+          <button class="btn btn-sm btn-outline-danger">Delete</button>
+        </div>
+      </div>
+
+      <div class="row g-2" style="display: none;">
+        <div class="col-md-5">
+          <input class="form-control" placeholder="Title" />
+        </div>
+        <div class="col-md-5">
+          <input class="form-control" placeholder="Body" />
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button class="btn btn-success w-100">Update</button>
+          <button class="btn btn-secondary w-100">Cancel</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #loading>Loading posts...</ng-template>
+
+  <div class="alert alert-info" style="display: none;">Loading posts...</div>
+</div>
