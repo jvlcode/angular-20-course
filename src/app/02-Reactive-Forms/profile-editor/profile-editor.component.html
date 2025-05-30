@@ -1,0 +1,9 @@
+<form [formGroup]="profileForm" action="" (ngSubmit)="onSubmit()">
+    <label for="first-name">First Name</label>
+    <input type="text" formControlName="firstName" id="first-name"  required>
+    <label for="last-name">Last Name</label>
+    <input type="text" formControlName="lastName" id="last-name"  required>
+    <p>{{profileForm.value.firstName}}</p>
+    <p>{{profileForm.value.lastName}}</p>
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
