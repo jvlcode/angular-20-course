@@ -5,10 +5,18 @@ import { NameEditorComponent } from './02-Reactive-Forms/name-editor/name-editor
 import { ProfileEditorComponent } from './02-Reactive-Forms/profile-editor/profile-editor.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CounterComponent } from './03-Signals/counter/counter.component';
+import { ShoppingCartComponent } from './03-Signals/shopping-cart/shopping-cart.component';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NameEditorComponent, ProfileEditorComponent, CounterComponent],
+  imports: [
+    RouterOutlet, 
+    NameEditorComponent, 
+    ProfileEditorComponent, 
+    CounterComponent,
+    ShoppingCartComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Shopping Cart</h2>
+
+  <!-- Input fields for adding a product -->
+  <input #productName type="text" placeholder="Product Name">
+  <input #productPrice type="number" placeholder="Price">
+
+  <!-- Fixed button syntax for adding a product -->
+  <button (click)="
+        addToCart({ id: +1, name: productName.value, price: +productPrice.value }); 
+        productName.value = productPrice.value = '';">
+    Add to Cart
+  </button>
+
+  <!-- Display cart items -->
+  <div *ngIf="cartItems().length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngFor="let item of cartItems()">
+    {{ item.name }} - ${{ item.price }}
+    <button (click)="removeFromCart(item.id)">Remove</button>
+  </div>
+
+  <!-- Total calculations -->
+  <p>Total Items: {{ cartItemCount() }}</p>
+  <p>Total Price: ${{ cartTotal() }}</p>
+  <p>Discounted Price: ${{ discountedTotal() }}</p>
+</div>
