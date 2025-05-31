@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { PostComponent } from './01-HttpClient/post/post.component';
 import { NameEditorComponent } from './02-Reactive-Forms/name-editor/name-editor.component';
 import { ProfileEditorComponent } from './02-Reactive-Forms/profile-editor/profile-editor.component';
+import { CounterComponent } from './03-Signals/counter/counter.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PostComponent, NameEditorComponent, ProfileEditorComponent],
+  imports: [RouterOutlet, PostComponent, NameEditorComponent, ProfileEditorComponent, CounterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
